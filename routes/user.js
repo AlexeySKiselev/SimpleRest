@@ -10,8 +10,8 @@ var db = new jaguardb();
 var path = require('path'),
     __parentDir = path.dirname(module.parent.filename);
 
-// GET request for user page - Get info
-router.get('/:userid', function(req, res) {
+// Get info
+router.get('/getprofile/:userid', function(req, res) {
     db.connect(path.join(__parentDir,'db'),function(err){
         if(err) {
             res.json({status: 'error', message: 'Error occured'});
@@ -33,8 +33,8 @@ router.get('/:userid', function(req, res) {
     });
 });
 
-// POST request for user page - Update
-router.post('/:userid', function(req,res) {
+// Update
+router.post('/saveprofile/:userid', function(req,res) {
     db.connect(path.join(__parentDir,'db'),function(err){
         if(err) {
             res.json({status: 'error', message: 'Error occured'});
@@ -63,8 +63,8 @@ router.post('/:userid', function(req,res) {
     });
 });
 
-// PUT request for user page - Create
-router.put('/:userid', function(req, res) {
+// Create
+router.get('/createuser/:userid', function(req, res) {
     db.connect(path.join(__parentDir,'db'),function(err){
         if(err) {
             res.json({status: 'error', message: 'Error occured'});
@@ -78,7 +78,7 @@ router.put('/:userid', function(req, res) {
                 if(!!docs.length) {
                     res.json({status: 'already exists', message: 'User ' + req.params.userid + ' is already exists'});
                 } else {
-                    db.insert({userid: req.params.userid, userprofile: req.body.userprofile},function(err,insertedData){
+                    db.insert({userid: req.params.userid, userprofile: ''},function(err,insertedData){
                         if(err) {
                             res.json({status: 'error', message: 'Error occured'});
                             return false;

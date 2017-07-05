@@ -10,22 +10,22 @@ var https = require('https'),
     path = require('path');
 
 // HTTPS Server options
-var serverOptions = {
+/*var serverOptions = {
     key: fs.readFileSync(path.join(__dirname,'certificates','privatekey.pem')),
     cert: fs.readFileSync(path.join(__dirname,'certificates','certificate.pem'))
-};
+};*/
 
 // Create Server
-var server = https.createServer(serverOptions);
+//var server = https.createServer(serverOptions);
 
 // Create App
 var app = require('./main');
 
 // Listening on port 443
-server.on('request',app);
+/*server.on('request',app);
 server.listen(443, function () {
     console.log('Starting server on https://localhost:443');
-});
+});*/
 
 // Insecure
 var insecureServer = http.createServer(),
