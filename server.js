@@ -19,7 +19,7 @@ var serverOptions = {
 var server = https.createServer(serverOptions);
 
 // Create App
-var app = require('./app');
+var app = require('./main');
 
 // Listening on port 443
 server.on('request',app);
@@ -28,9 +28,10 @@ server.listen(443, function () {
 });
 
 // Insecure
-var insecureServer = http.createServer();
+var insecureServer = http.createServer(),
+    envPort = process.env.PORT || 3000;
 insecureServer.on('request',app);
-insecureServer.listen(3000, function () {
-    console.log('Starting server on http://localhost:3000');
+insecureServer.listen(envPort, function () {
+    console.log('Starting server on http://localhost:'+envPort);
 });
 
